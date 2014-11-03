@@ -1,0 +1,43 @@
+---
+title: "RMarkdown_j3456_Keele_Simple_Report_5"
+author: "W. Greg Alvord, Ph.D."
+date: "November 3, 2014"
+output: pdf_document
+---
+
+Date:     November 3, 2014
+
+To:       Dr. Brandon Keele
+
+          Dr. Claes Ohlen
+          
+          Dr. Victor Ayala
+          
+From:     Dr. Greg Alvord, Director
+
+Subject:  Report 5
+
+
+# Introduction
+
+We now consider the number of variants observed for each macaque.  For the two Ctrl animals, the observations were 7 & 8.  For the two Expt animals, the observations were 3 & 5.  (Here, we deal only with the observations, not with the theoretical distributions.)
+
+You indcicated that the Scientific Community would be in agreement with the idea that the treatment effect could **not** increase the number of variants in a macaque.  
+
+```{r}
+Ctrl <- c(7, 8)
+Expt <- c(3, 5)
+```
+
+We perform a two-sample, *one-sided* t-test.  Here it is: 
+
+```{r}
+t.test(Ctrl, Expt, alternative = 'greater')
+```
+
+We have used the default t-test, called Welch's Modified t-test.  It accomodates sames with possibly different variances.  Now, we will assume that the variances are equialent. Here is the code: 
+
+```{r}
+t.test(Ctrl, Expt, alternative = 'greater', var.equal = TRUE)
+```
+
